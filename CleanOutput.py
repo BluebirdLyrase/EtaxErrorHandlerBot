@@ -1,0 +1,10 @@
+import os
+#os.remove('Output')
+os.mkdir('Output')
+os.mkdir('Output/CannotGenerateDebitCreditNoteStep1')
+os.mkdir('Output/CannotGenerateDebitCreditNoteStep2')
+os.mkdir('Output/CannotGenerateDebitCreditNoteStep3')
+os.mkdir('Output/FailStatus')
+os.mkdir('Output/ItemNameStep1')
+os.mkdir('Output/ItemNameStep2')
+os.mkdir('Output/ItemNameStep3')
