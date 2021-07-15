@@ -6,6 +6,7 @@ import CannotGenerateDebitCreditNoteStep1
 import VocherLogCleaner
 import FailStatus
 import ItemName
+import InvalidEmail
 
 vc = VocherLogCleaner.VoucherLogCleaner()
 dataCollection = pd.read_csv('input/EtaxLog.csv',encoding = "ISO-8859-1", engine='python')
@@ -16,6 +17,8 @@ DebitNoteCollectionVoucher = []
 FailStausVoucherIV = []
 ItemNameCollection = []
 ItemNameCollectionVoucher = []
+InvalidEmailSALESID = []
+InvalidEmailVoucer = []
 for data in dataCollection['SALESID'] : 
     log = dataCollection.at[index,'LOG']
     voucher = dataCollection.at[index,'VOUCHER']
@@ -30,6 +33,11 @@ for data in dataCollection['SALESID'] :
         ItemNameCollection.append(dataCollection.at[index,'SALESID'])
         ItemNameCollectionVoucher.append(voucher)
 
+    if 'failed : email - is invalid' in log :
+        InvalidEmailSALESID.append(dataCollection.at[index,'SALESID'])
+        InvalidEmailVoucer.append(voucher)
+
+
     index = index+1
 
 CGDN = CannotGenerateDebitCreditNoteStep1.CannotGenerateDebitCreditNoteStep1()
@@ -38,3 +46,5 @@ FS = FailStatus.FailStatus()
 FS.getSQL(FailStausVoucherIV,vc)
 IN = ItemName.ItemName()
 IN.getSQL(ItemNameCollection,ItemNameCollectionVoucher,vc)
+IE = InvalidEmail.InvalidEmail()
+IE.getSQL(InvalidEmailSALESID, InvalidEmailVoucer, vc)

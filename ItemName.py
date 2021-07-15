@@ -26,11 +26,11 @@ class ItemName:
         f.write(SQLText)
         f.close()
         print('sql text has been create')
-        print(SQLText)
+        # print(SQLText)
 
         SQLTextCleaner = vc.getCleanerSQL(ItemNameCollectionVoucher)
         f2 = open("output/ItemNameStep3/"+dt_stringDir+".txt", "w")
         f2.write(SQLTextCleaner)
         f2.close()
         print('sql cleaner text has been create')
-        print(SQLTextCleaner)
+        # print(SQLTextCleaner)

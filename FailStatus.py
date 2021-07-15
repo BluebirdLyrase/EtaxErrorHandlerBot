@@ -15,6 +15,6 @@ class FailStatus:
         f2.write(SQLTextCleaner)
         f2.close()
         print('sql cleaner text has been create')
-        print(SQLTextCleaner)
+        # print(SQLTextCleaner)
 
     
