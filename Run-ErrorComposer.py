@@ -9,7 +9,8 @@ import ItemName
 import InvalidEmail
 
 vc = VocherLogCleaner.VoucherLogCleaner()
-dataCollection = pd.read_csv('input/EtaxLog.csv',encoding = "ISO-8859-1", engine='python')
+#dataCollection = pd.read_csv('input/EtaxLog.csv',encoding = "ISO-8859-1", engine='python')
+dataCollection = pd.read_csv('input/EtaxLog.csv', engine="python", sep=',', quotechar='"', error_bad_lines=False)
 # print(dataCollection)
 index = 0
 DebitNoteCollection = []
@@ -37,6 +38,9 @@ for data in dataCollection['SALESID'] :
         InvalidEmailSALESID.append(dataCollection.at[index,'SALESID'])
         InvalidEmailVoucer.append(voucher)
 
+    if 'email pattern is invalid' in log :
+        InvalidEmailSALESID.append(dataCollection.at[index,'SALESID'])
+        InvalidEmailVoucer.append(voucher)
 
     index = index+1
 
